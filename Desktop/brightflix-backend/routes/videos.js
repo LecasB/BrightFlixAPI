@@ -8,4 +8,8 @@ router.get('/videos', (req,res) =>{
     })
 })
 
+const { getVideos } = require("../controllers/videosControl")
+
+router.route('/videos').get(getVideos)
+
 module.exports = router;

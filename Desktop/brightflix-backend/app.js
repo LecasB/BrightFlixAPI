@@ -14,6 +14,13 @@ app.use(videos);
 
 const PORT = process.env.PORT;
 const MODE = process.env.NODE_ENV
+
+app.get('*', function(req, res){
+    res.status(404).json({
+        sucess: "false",
+        message : "Oops, this page does not exist!"});
+  }); 
+
 app.listen(PORT, () => {
     console.log(`Server Started on Port: ${PORT} in ${MODE} mode`);
 })
