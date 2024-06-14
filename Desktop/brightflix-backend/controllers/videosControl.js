@@ -1,5 +1,3 @@
-const Video = require('../models/videoModel');
-
 exports.getVideos = async (req, res, next) => {
   try {
     const videos = await Video.find();
