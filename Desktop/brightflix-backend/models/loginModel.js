@@ -1,6 +1,7 @@
-const { default: mongoose } = require("mongoose");
+const mongoose = require("mongoose");
+const validator = require("validator")
 
-const LoginScheme = new mongoose.Schema({
+const Login = new mongoose.Schema({
     loginUser: {
       type: String,
       required: [true, 'Please enter your username'],
@@ -16,4 +17,4 @@ const LoginScheme = new mongoose.Schema({
     },
   });
 
-  module.exports = mongoose.model("Login", LoginScheme)
+  module.exports = mongoose.model("Login", Login)
