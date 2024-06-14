@@ -3,14 +3,17 @@ const app = express();
 
 const dotenv = require('dotenv');
 
-dotenv.config({path : './config/config.env'})
-
+dotenv.config({ path: './config/config.env' });
 
 const login = require('./routes/login');
 const videos = require('./routes/videos');
 const db = require("./config/db");
 
-db();
+try {
+  db();
+} catch (err) {
+  console.error(err);
+}
 
 app.use(express.json());
 
@@ -21,11 +24,12 @@ const PORT = process.env.PORT;
 const MODE = process.env.NODE_ENV
 
 app.get('*', function(req, res){
-    res.status(404).json({
-        sucess: "false",
-        message : "Oops, this page does not exist!"});
-  }); 
+  res.status(404).json({
+    success: "false",
+    message: "Oops, this page does not exist!"
+  });
+});
 
 app.listen(PORT, () => {
-    console.log(`Server Started on Port: ${PORT} in ${MODE} mode`);
-})
+  console.log(`Server Started on Port: ${PORT} in ${MODE} mode`);
+});
