@@ -8,6 +8,11 @@ dotenv.config({path : './config/config.env'})
 
 const login = require('./routes/login');
 const videos = require('./routes/videos');
+const db = require("./config/db");
+
+db();
+
+app.use(express.json());
 
 app.use(login);
 app.use(videos);

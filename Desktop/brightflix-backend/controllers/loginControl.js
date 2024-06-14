@@ -1,3 +1,5 @@
+const Login = require('../models/loginModel');
+
 exports.getLogin = (req, res, next) => {
     res.status(200).json({
         sucess: true,
