@@ -10,6 +10,7 @@ const login = require('./routes/login');
 const videos = require('./routes/videos');
 const db = require("./config/db");
 
+
 app.use(express.json());
 
 app.use(login);
