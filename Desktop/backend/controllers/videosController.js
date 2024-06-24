@@ -1,9 +1,69 @@
+const Video = require("../models/videos");
 
 // Get all Videos => /api/v1/videos
 
-exports.getVideos = (req, res, next) => {
-    res.status(200).json({
-        success: true,
-        message : 'This route will display all videos :3'
+exports.getVideos = async (req, res, next) => {
+  const videos = await Video.find();
+
+  res.status(200).json({
+    developers: req.developers,
+    success: true,
+    results: videos.length,
+    data: videos,
+  });
+};
+
+//New Video => /api/v1/videos/new
+
+exports.newVideo = async (req, res, next) => {
+  const video = await Video.create(req.body);
+
+  res.status(200).json({
+    sucess: true,
+    message: "Video Created",
+    data: video,
+  });
+};
+
+// Update a Video => /api/v1/video/:id
+exports.updateVideo = async (req, res, next) => {
+  let video = await Video.findById(req.params.id);
+
+  if (!video) {
+    res.status(404).json({
+      sucess: false,
+      message: "Video not found",
     });
-}
+  }
+
+  video = await Video.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidators: true,
+    useFindAndModify: false,
+  });
+
+  res.status(200).json({
+    sucess: true,
+    message: "Video is updated",
+    data: video,
+  });
+};
+
+//Delete video => /api/v1/video/:id
+exports.deleteVideo = async (req, res, next) => {
+  let video = await Video.findById(req.params.id);
+
+  if (!video) {
+    return res.status(404).json({
+      sucess: false,
+      message: "Video not found",
+    });
+  }
+
+  video = await Video.findByIdAndDelete(req.params.id);
+
+  res.status(200).json({
+    sucess: true,
+    message: "Video is Deleted",
+  });
+};
