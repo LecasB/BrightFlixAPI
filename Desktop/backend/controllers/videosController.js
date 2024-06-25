@@ -1,5 +1,7 @@
 const Video = require("../models/videos");
 
+const ErrorHandler = require("../util/errorHandler");
+
 // Get all Videos => /api/v1/videos
 
 exports.getVideos = async (req, res, next) => {
@@ -25,15 +27,30 @@ exports.newVideo = async (req, res, next) => {
   });
 };
 
+//Get a single job with id and slug  => /api/v1/videos/:id
+
+exports.getVideoById = async (req, res, next) => {
+  const video = await Video.findById(req.params.id);
+
+  if (!video) {
+    return res.status(404).json({
+      sucess: false,
+      message: "Video not found",
+    });
+  }
+
+  res.status(200).json({
+    sucess: true,
+    data: video,
+  });
+};
+
 // Update a Video => /api/v1/video/:id
 exports.updateVideo = async (req, res, next) => {
   let video = await Video.findById(req.params.id);
 
   if (!video) {
-    res.status(404).json({
-      sucess: false,
-      message: "Video not found",
-    });
+    return next(new ErrorHandler("Video not found", 404));
   }
 
   video = await Video.findByIdAndUpdate(req.params.id, req.body, {

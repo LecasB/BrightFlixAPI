@@ -8,14 +8,17 @@ const {
   newVideo,
   updateVideo,
   deleteVideo,
+  getVideoById,
 } = require("../controllers/videosController");
 
 router.route("/videos").get(getVideos);
 
+router.route("/videos/:id").get(getVideoById);
+
 router.route("/videos/new").post(newVideo);
 
-router.route("/videos/:id").put(updateVideo);
+router.route("/videos/update/:id").put(updateVideo);
 
-router.route("/videos/:id").delete(deleteVideo);
+router.route("/videos/delete/:id").delete(deleteVideo);
 
 module.exports = router;
