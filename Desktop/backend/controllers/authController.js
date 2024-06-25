@@ -11,9 +11,13 @@ exports.registerUser = async (req, res, next) => {
     role,
   });
 
+  //Create JWT Token
+  const token = user.getJwtToken();
+
   res.status(200).json({
     sucess: true,
     message: "User is registered.",
     data: user,
+    token,
   });
 };
