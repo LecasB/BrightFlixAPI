@@ -28,8 +28,10 @@ app.use(middlware);
 //Importing routes
 
 const videos = require("./routes/videos");
+const auth = require("./routes/auth");
 
 app.use("/api/v1", videos);
+app.use("/api/v1", auth);
 
 //Middleware to handle errors
 
