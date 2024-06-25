@@ -1,11 +1,14 @@
 const Video = require("../models/videos");
-
 const ErrorHandler = require("../util/errorHandler");
+const APIFilters = require("../util/apiFilters");
 
 // Get all Videos => /api/v1/videos
 
 exports.getVideos = async (req, res, next) => {
-  const videos = await Video.find();
+  const apiFilters = new APIFilters(Video.find(), req.query);
+  apiFilters.filter();
+  apiFilters.sort();
+  const videos = await apiFilters.query;
 
   res.status(200).json({
     developers: req.developers,
