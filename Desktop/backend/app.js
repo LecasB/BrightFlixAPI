@@ -13,10 +13,20 @@ dotenv.config({ path: "./config/config.env" });
 
 //define the CORS options
 
+const allowedOrigins = [
+  "http://localhost:3000/",
+  "https://bright-flix.vercel.app",
+];
 const corsOptions = {
-  origin: "http://localhost:3000", // Replace with your allowed origin
-  methods: ["GET", "POST"], // Allowed methods
-  allowedHeaders: ["Content-Type", "Authorization"], // Allowed headers
+  origin: function (origin, callback) {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error("Não permitido por CORS"));
+    }
+  },
+  methods: ["GET", "POST"],
+  allowedHeaders: ["Content-Type", "Authorization"],
 };
 
 // Use the CORS middleware with options
