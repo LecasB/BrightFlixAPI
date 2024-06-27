@@ -14,7 +14,7 @@ dotenv.config({ path: "./config/config.env" });
 //define the CORS options
 
 const corsOptions = {
-  origin: "https://example.com", // Replace with your allowed origin
+  origin: "https://brightflixapii.vercel.app/", // Replace with your allowed origin
   methods: ["GET", "POST"], // Allowed methods
   allowedHeaders: ["Content-Type", "Authorization"], // Allowed headers
 };
