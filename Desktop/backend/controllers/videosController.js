@@ -68,7 +68,7 @@ exports.updateVideo = async (req, res, next) => {
     data: video,
   });
 };
-
+//naosei
 //Delete video => /api/v1/video/:id
 exports.deleteVideo = async (req, res, next) => {
   let video = await Video.findById(req.params.id);
