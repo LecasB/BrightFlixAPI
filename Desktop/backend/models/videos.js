@@ -15,7 +15,7 @@ const videoSchema = new mongoose.Schema(
     title: {
       type: String,
       required: [true, "Please enter Video Title"],
-      maxlength: [100, "Video title can not exceed 100 characters"],
+      maxlength: [1000, "Video title can not exceed 100 characters"],
     },
 
     slug: String,
@@ -29,13 +29,13 @@ const videoSchema = new mongoose.Schema(
     category: {
       type: String,
       required: [true, "Please enter video's category"],
-      maxlength: [15, "Description can not exceed 15 characters"],
+      maxlength: [150, "Description can not exceed 15 characters"],
     },
 
     creator: {
       type: String,
       required: [true, "Please enter the creators name"],
-      maxlength: [15, "Name can not exceed 15  characters"],
+      maxlength: [150, "Name can not exceed 15  characters"],
     },
 
     email: {
@@ -47,6 +47,26 @@ const videoSchema = new mongoose.Schema(
     created: {
       type: String,
       default: formatDate,
+    },
+
+    duration: {
+      type: Number,
+      required: [true, "Please enter the duration"],
+    },
+
+    rating: {
+      type: Number,
+      required: [true, "Please enter the rating"],
+    },
+
+    thumb: {
+      type: String,
+      required: [true, "Please enter the thumbnail"],
+    },
+
+    video: {
+      type: String,
+      required: [true, "Please enter the thumbnail"],
     },
   },
   {
