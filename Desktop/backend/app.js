@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
 
 const dotenv = require("dotenv");
@@ -9,6 +10,17 @@ const errorMiddleware = require("./middlewares/errors");
 
 //Setting up config.env file variables
 dotenv.config({ path: "./config/config.env" });
+
+//define the CORS options
+
+const corsOptions = {
+  origin: "https://example.com", // Replace with your allowed origin
+  methods: ["GET", "POST"], // Allowed methods
+  allowedHeaders: ["Content-Type", "Authorization"], // Allowed headers
+};
+
+// Use the CORS middleware with options
+app.use(cors(corsOptions));
 
 //Connecting Database
 
