@@ -68,7 +68,7 @@ exports.updateVideo = async (req, res, next) => {
     data: video,
   });
 };
-//naoseimesmo
+
 //Delete video => /api/v1/video/:id
 exports.deleteVideo = async (req, res, next) => {
   let video = await Video.findById(req.params.id);
@@ -86,4 +86,20 @@ exports.deleteVideo = async (req, res, next) => {
     sucess: true,
     message: "Video is Deleted",
   });
+};
+
+exports.getCategorias = async (req, res, next) => {
+  try {
+    const categories = await Video.distinct("category");
+    res.status(200).json({
+      sucess: true,
+      size: categories.length,
+      data: categories,
+    });
+  } catch (error) {
+    res.status(500).json({
+      sucess: false,
+      error: "Failed to fetch categories",
+    });
+  }
 };
