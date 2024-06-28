@@ -1,21 +1,36 @@
 const Video = require("../models/videos");
 const ErrorHandler = require("../util/errorHandler");
-const APIFilters = require("../util/apiFilters");
 
 // Get all Videos => /api/v1/videos
 
 exports.getVideos = async (req, res, next) => {
-  const apiFilters = new APIFilters(Video.find(), req.query);
-  apiFilters.filter();
-  apiFilters.sort();
-  const videos = await apiFilters.query;
+  try {
+    let query = Video.find();
 
-  res.status(200).json({
-    developers: req.developers,
-    success: true,
-    results: videos.length,
-    data: videos,
-  });
+    if (req.query.sort) {
+      const sortBy = req.query.sort.split(",").join(" ");
+      query = query.sort(sortBy);
+    } else {
+      query = query.sort({ created: -1 });
+    }
+
+    if (req.query.category) {
+      query = query.where("category").equals(req.query.category);
+    }
+
+    const video = await query.exec();
+
+    res.status(200).json({
+      sucess: true,
+      message: video.length,
+      data: video,
+    });
+  } catch (error) {
+    res.status(500).json({
+      sucess: false,
+      error: "Failed to fetch movies",
+    });
+  }
 };
 
 //New Video => /api/v1/videos/new
