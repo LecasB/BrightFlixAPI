@@ -55,9 +55,11 @@ app.use(middlware);
 
 const videos = require("./routes/videos");
 const auth = require("./routes/auth");
+const series = require("./routes/series");
 
 app.use("/api/v1", videos);
 app.use("/api/v1", auth);
+app.use("/api/v1", series);
 
 //Middleware to handle errors
 
