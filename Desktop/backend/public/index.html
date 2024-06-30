@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrightFlix API Documentation</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function copyToClipboard(id) {
+            var copyText = document.getElementById(id);
+            var textarea = document.createElement("textarea");
+            textarea.value = copyText.innerText;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand("copy");
+            document.body.removeChild(textarea);
+            alert("Copied to clipboard: " + copyText.innerText);
+        }
+    </script>
+</head>
+<body>
+    <h1>BrightFlix API Documentation:</h1>
+
+    <h2> Movies: </h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Use</th>
+                <th>Description</th>
+                <th>Copy</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td id="name1">Get Movies</td>
+                <td id="use1">https://brightflixapii.vercel.app/api/v1/videos</td>
+                <td id="description1">This endpoint fetches data from the server.</td>
+                <td><button class="copy-button" onclick="copyToClipboard('us1')">Copy</button></td>
+            </tr>
+            <tr>
+                <td id="name2">New Movie</td>
+                <td id="use2">https://brightflixapii.vercel.app/api/v1/videos/new</td>
+                <td id="description2">This endpoint submits data to the server.</td>
+                <td><button class="copy-button" onclick="copyToClipboard('use2')">Copy</button></td>
+            </tr>
+            <!-- Add more rows as needed -->
+        </tbody>
+    </table>
+
+    <h2> Series: </h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Use</th>
+                <th>Description</th>
+                <th>Copy</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td id="name1">Get Series</td>
+                <td id="use1">https://brightflixapii.vercel.app/api/v1/series</td>
+                <td id="description1">This endpoint fetches data from the server.</td>
+                <td><button class="copy-button" onclick="copyToClipboard('use1')">Copy</button></td>
+            </tr>
+            <tr>
+                <td id="name2">New Serie</td>
+                <td id="use2">https://brightflixapii.vercel.app/api/v1/series/new</td>
+                <td id="description2">This endpoint submits data to the server.</td>
+                <td><button class="copy-button" onclick="copyToClipboard('use2')">Copy</button></td>
+            </tr>
+            <!-- Add more rows as needed -->
+        </tbody>
+    </table>
+
+
+    <h2> Users: </h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Use</th>
+                <th>Description</th>
+                <th>Copy</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td id="name1">Create Account</td>
+                <td id="use1">https://brightflixapii.vercel.app/api/v1/register</td>
+                <td id="description1">This endpoint fetches data from the server.</td>
+                <td><button class="copy-button" onclick="copyToClipboard('use1')">Copy</button></td>
+            </tr>
+            <tr>
+                <td id="name2">Login</td>
+                <td id="use2">https://brightflixapii.vercel.app/api/v1/login</td>
+                <td id="description2">This endpoint submits data to the server.</td>
+                <td><button class="copy-button" onclick="copyToClipboard('use2')">Copy</button></td>
+            </tr>
+            <!-- Add more rows as needed -->
+        </tbody>
+    </table>        
+
+</body>
+</html>
