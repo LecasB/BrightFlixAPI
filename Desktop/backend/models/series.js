@@ -41,13 +41,19 @@ const serieSchema = new mongoose.Schema(
     },
 
     seasons: {
-      type: Number,
-      required: [true, "Please enter the number of seasons"],
-    },
-
-    episodes: {
-      type: Number,
-      required: [true, "Please enter the number of episodes"],
+      type: [
+        {
+          number: {
+            type: Number,
+            required: [true, "Please enter the season number"],
+          },
+          episodes: {
+            type: [String],
+            required: [true, "Please enter the episode names"],
+          },
+        },
+      ],
+      required: [true, "Please enter the seasons"],
     },
 
     cast: {
