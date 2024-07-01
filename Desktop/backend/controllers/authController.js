@@ -66,7 +66,7 @@ exports.getLogs = (req, res) => {
   fs.readFile(logFilePath, 'utf8', (err, data) => {
     if (err) {
       console.error('Error reading log file', err);
-      return res.status(500).send(logFilePath);
+      return res.status(500).send("O Bro nao consegue ler o ficheiro sabe la deus porque");
     }
     res.type('text/plain');
     res.send(data);
