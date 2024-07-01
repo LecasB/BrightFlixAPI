@@ -72,6 +72,10 @@ const videoSchema = new mongoose.Schema(
       type: String,
       required: [true, "Please enter the banner"],
     },
+    movie: {
+      type: String,
+      required: [true, "Please enter the banner"],
+    },
   },
   {
     toJSON: {
