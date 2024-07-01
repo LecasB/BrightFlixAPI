@@ -5,9 +5,14 @@ const app = express();
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
 const path = require('path');
+const fs = require('fs');
+const os = require('os');
 
 const connectDatabase = require("./config/database");
 const errorMiddleware = require("./middlewares/errors");
+
+
+
 
 //Setting up config.env file variables
 dotenv.config({ path: "./config/config.env" });
@@ -29,6 +34,28 @@ const corsOptions = {
   methods: ["GET", "POST", "DELETE", "PUT", "PATCH"],
   allowedHeaders: ["Content-Type", "Authorization"],
 };
+
+//Logs
+
+const logFilePath = path.join(__dirname, 'public', 'visitor_logs.txt');
+
+
+
+app.get('/', (req, res) => {
+  const visitorIp = req.ip;
+  const machineName = os.hostname();
+  const logEntry = `IP: ${visitorIp}, Machine Name: ${machineName}\n`;
+
+  fs.appendFile(logFilePath, logEntry, (err) => {
+    if (err) {
+      console.error('Failed to log visitor info:', err);
+    } else {
+      console.log('Logged visitor info:', logEntry);
+    }
+  });
+
+  res.send('Hello, World!');
+});
 
 // Use the CORS middleware with options
 app.use(cors(corsOptions));
