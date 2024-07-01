@@ -4,6 +4,7 @@ const app = express();
 
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
+const path = require('path');
 
 const connectDatabase = require("./config/database");
 const errorMiddleware = require("./middlewares/errors");
@@ -25,7 +26,7 @@ const corsOptions = {
       callback(new Error("Não permitido por CORS"));
     }
   },
-  methods: ["GET", "POST"],
+  methods: ["GET", "POST", "DELETE", "PUT", "PATCH"],
   allowedHeaders: ["Content-Type", "Authorization"],
 };
 
@@ -42,6 +43,15 @@ app.use(express.json());
 //Ser cookie parser
 app.use(cookieParser());
 
+//HTML sender
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Define a route to serve the HTML file
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 //Creating own middlware
 
 const middlware = (req, res, next) => {
@@ -55,9 +65,11 @@ app.use(middlware);
 
 const videos = require("./routes/videos");
 const auth = require("./routes/auth");
+const series = require("./routes/series");
 
 app.use("/api/v1", videos);
 app.use("/api/v1", auth);
+app.use("/api/v1", series);
 
 //Middleware to handle errors
 
