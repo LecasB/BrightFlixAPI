@@ -5,8 +5,7 @@ const app = express();
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
 const path = require('path');
-const fs = require('fs');
-const os = require('os');
+
 
 const connectDatabase = require("./config/database");
 const errorMiddleware = require("./middlewares/errors");
