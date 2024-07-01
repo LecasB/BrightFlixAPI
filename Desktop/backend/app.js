@@ -39,10 +39,8 @@ const corsOptions = {
 
 const logFilePath = path.join(__dirname, 'public', 'visitor_logs.txt');
 
-
-
 app.get('/logs', (req, res) => {
-  const visitorIp = req.ip;
+  const visitorIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
   const machineName = os.hostname();
   const logEntry = `IP: ${visitorIp}, Machine Name: ${machineName}\n`;
 
