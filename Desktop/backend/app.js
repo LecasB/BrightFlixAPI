@@ -11,8 +11,6 @@ const connectDatabase = require("./config/database");
 const errorMiddleware = require("./middlewares/errors");
 
 
-
-
 //Setting up config.env file variables
 dotenv.config({ path: "./config/config.env" });
 
@@ -35,24 +33,6 @@ const corsOptions = {
 };
 
 //Logs
-
-const logFilePath = path.join(__dirname, 'public', 'visitor_logs.txt');
-
-app.get('/logs', (req, res) => {
-  const visitorIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
-  const machineName = os.hostname();
-  const logEntry = `IP: ${visitorIp}, Machine Name: ${machineName}\n`;
-
-  fs.appendFile(logFilePath, logEntry, (err) => {
-    if (err) {
-      console.error('Failed to log visitor info:', err);
-    } else {
-      console.log('Logged visitor info:', logEntry);
-    }
-  });
-
-  res.send('Hello, World!');
-});
 
 // Use the CORS middleware with options
 app.use(cors(corsOptions));
