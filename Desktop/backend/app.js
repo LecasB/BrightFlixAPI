@@ -41,7 +41,7 @@ const logFilePath = path.join(__dirname, 'public', 'visitor_logs.txt');
 
 
 
-app.get('/', (req, res) => {
+app.get('/logs', (req, res) => {
   const visitorIp = req.ip;
   const machineName = os.hostname();
   const logEntry = `IP: ${visitorIp}, Machine Name: ${machineName}\n`;
