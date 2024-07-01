@@ -66,7 +66,7 @@ exports.getLogs = (req, res) => {
   fs.readFile(logFilePath, 'utf8', (err, data) => {
     if (err) {
       console.error('Error reading log file', err);
-      return res.status(500).send('Internal Server Error');
+      return res.status(500).send(logFilePath);
     }
     res.type('text/plain');
     res.send(data);
