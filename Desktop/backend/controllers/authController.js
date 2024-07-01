@@ -56,7 +56,7 @@ const logLoginAttempt = (email, success) => {
 
   fs.appendFile(logFilePath, logMessage, (err) => {
     if (err) {
-      console.error('Error writing to log file', err);
+      alert('Error writing to log file', err);
     }
   });
 };
