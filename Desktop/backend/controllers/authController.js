@@ -4,7 +4,7 @@ const sendToken = require("../util/jwtToken");
 const fs = require('fs');
 const path = require('path');
 
-const logFilePath = path.join('../public', 'visitor_logs.txt');
+const logFilePath = path.join('./public', 'visitor_logs.txt');
 
 
 //Register a new user => /api/v1/register
@@ -62,6 +62,7 @@ const logLoginAttempt = (email, success) => {
 };
 
 exports.getLogs = (req, res) => {
+  console.log('logFilePath:', logFilePath);
   fs.readFile(logFilePath, 'utf8', (err, data) => {
     if (err) {
       console.error('Error reading log file', err);
