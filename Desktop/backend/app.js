@@ -6,8 +6,10 @@ const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
 const path = require('path');
 
+
 const connectDatabase = require("./config/database");
 const errorMiddleware = require("./middlewares/errors");
+
 
 //Setting up config.env file variables
 dotenv.config({ path: "./config/config.env" });
@@ -18,6 +20,14 @@ const allowedOrigins = [
   "http://localhost:3000",
   "https://bright-flix.vercel.app",
 ];
+
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', allowedOrigins);
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+});
+
 const corsOptions = {
   origin: function (origin, callback) {
     if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
@@ -29,6 +39,8 @@ const corsOptions = {
   methods: ["GET", "POST", "DELETE", "PUT", "PATCH"],
   allowedHeaders: ["Content-Type", "Authorization"],
 };
+
+//Logs
 
 // Use the CORS middleware with options
 app.use(cors(corsOptions));
