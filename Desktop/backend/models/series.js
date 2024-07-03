@@ -101,7 +101,7 @@ const serieSchema = new mongoose.Schema(
       virtuals: true,
       versionKey: false,
       transform: function (doc, ret) {
-        delete ret._id;
+        delete ret._id; // Remove _id field from the document
         return ret;
       },
     },
