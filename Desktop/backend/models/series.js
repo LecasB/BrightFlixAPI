@@ -80,6 +80,10 @@ const serieSchema = new mongoose.Schema(
       type: String,
       required: [true, "Please enter the banner"],
     },
+    link: {
+      type: String,
+      required: [true, "Please enter link embed"],
+    },
   },
   {
     toJSON: {
