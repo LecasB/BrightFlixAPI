@@ -45,55 +45,45 @@ const serieSchema = new mongoose.Schema(
         {
           number: {
             type: Number,
-            required: [true, "Please enter the season number"],
           },
           episodes: {
             type: [
               {
                 title: {
                   type: String,
-                  required: [true, "Please enter the title"],
                 },
 
                 link: {
                   type: String,
-                  required: [true, "Please enter the link"],
                 },
               },
             ],
           },
         },
       ],
-      required: [true, "Please enter the seasons"],
     },
 
     cast: {
       type: [String],
-      required: [true, "Please enter the cast members"],
     },
 
     rating: {
       type: Number,
-      required: [true, "Please enter the rating"],
     },
 
     thumb: {
       type: String,
-      required: [true, "Please enter the thumbnail"],
     },
 
     video: {
       type: String,
-      required: [true, "Please enter the video link"],
     },
 
     banner: {
       type: String,
-      required: [true, "Please enter the banner"],
     },
     link: {
       type: String,
-      required: [true, "Please enter link embed"],
     },
   },
   {
