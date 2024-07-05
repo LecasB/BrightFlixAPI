@@ -11,14 +11,32 @@ const logFilePath = path.join(__dirname, "../public", "visitor_logs.txt");
 exports.registerUser = async (req, res, next) => {
   const { name, email, password, role } = req.body;
 
-  const user = await User.create({
-    name,
-    email,
-    password,
-    role,
-  });
+  try {
+    // Validate input (you can use a library like Joi or express-validator)
+    if (!name || !email || !password || !role) {
+      return res.status(400).json({ success: false, message: "All fields are required" });
+    }
 
-  sendToken(user, 200, res);
+    // Check if user already exists
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ success: false, message: "User already exists" });
+    }
+
+    // Create new user
+    const user = await User.create({
+      name,
+      email,
+      password,
+      role,
+    });
+
+    // Send token
+    sendToken(user, 201, res); // Status code 201 for created
+
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
 };
 
 //Login user => /api/v1/login
