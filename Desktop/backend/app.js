@@ -34,7 +34,7 @@ const corsOptions = {
 // Use the CORS middleware with options
 app.use(cors(corsOptions));
 
-// Preflight OPTIONS requests handling (important for CORS)
+// Preflight OPTIONS requests handling 
 app.options('*', cors(corsOptions));
 
 // Connecting Database
