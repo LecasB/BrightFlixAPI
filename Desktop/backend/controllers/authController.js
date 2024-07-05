@@ -13,7 +13,7 @@ exports.registerUser = async (req, res, next) => {
 
   try {
     // Validate input (you can use a library like Joi or express-validator)
-    if (!name || !email || !password || !role) {
+    if (!name || !email || !password) {
       return res.status(400).json({ success: false, message: "All fields are required" });
     }
 
