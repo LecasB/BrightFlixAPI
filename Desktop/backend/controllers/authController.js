@@ -3,7 +3,7 @@ const ErrorHandeler = require("../util/errorHandler");
 const sendToken = require("../util/jwtToken");
 const fs = require("fs");
 const path = require("path");
-const cors = require('cors');
+
 
 const logFilePath = path.join(__dirname, "../public", "visitor_logs.txt");
 

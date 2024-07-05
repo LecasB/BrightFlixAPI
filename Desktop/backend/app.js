@@ -1,80 +1,67 @@
 const express = require("express");
 const cors = require("cors");
-const app = express();
-
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
 const path = require('path');
-
-
 const connectDatabase = require("./config/database");
 const errorMiddleware = require("./middlewares/errors");
 
+const app = express();
 
-//Setting up config.env file variables
+// Setting up config.env file variables
 dotenv.config({ path: "./config/config.env" });
 
-//define the CORS options
-
+// Define the CORS options
 const allowedOrigins = [
   "http://localhost:3000",
   "https://bright-flix.vercel.app",
 ];
 
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', allowedOrigins);
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, HEAD, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  next();
-});
-
 const corsOptions = {
   origin: function (origin, callback) {
-    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
-      callback(new Error("Não permitido por CORS"));
+      callback(new Error("Not allowed by CORS"));
     }
   },
   methods: ["GET", "POST", "DELETE", "PUT", "PATCH", "HEAD", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true, // If you want to allow cookies or authorization headers
 };
-
-//Logs
 
 // Use the CORS middleware with options
 app.use(cors(corsOptions));
 
-//Connecting Database
+// Preflight OPTIONS requests handling (important for CORS)
+app.options('*', cors(corsOptions));
 
+// Connecting Database
 connectDatabase();
 
-//Setup body parser
+// Setup body parser
 app.use(express.json());
 
-//Ser cookie parser
+// Setup cookie parser
 app.use(cookieParser());
 
-//HTML sender
-
+// Serve static files
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Define a route to serve the HTML file
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-//Creating own middlware
-
-const middlware = (req, res, next) => {
+// Creating own middleware
+const middleware = (req, res, next) => {
   req.developers = "Leonardo 😎 & Belo 😎";
   next();
 };
+app.use(middleware);
 
-app.use(middlware);
-
-//Importing routes
-
+// Importing routes
 const videos = require("./routes/videos");
 const auth = require("./routes/auth");
 const series = require("./routes/series");
@@ -83,12 +70,11 @@ app.use("/api/v1", videos);
 app.use("/api/v1", auth);
 app.use("/api/v1", series);
 
-//Middleware to handle errors
-
+// Middleware to handle errors
 app.use(errorMiddleware);
 
-const PORT = process.env.PORT;
-const MODE = process.env.NODE_ENV;
+const PORT = process.env.PORT || 5000; // Default to 5000 if PORT is not set
+const MODE = process.env.NODE_ENV || 'development'; // Default to 'development' if NODE_ENV is not set
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT} in ${MODE} mode.`);
 });
