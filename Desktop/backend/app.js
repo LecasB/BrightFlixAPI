@@ -15,6 +15,7 @@ dotenv.config({ path: "./config/config.env" });
 const allowedOrigins = [
   "http://localhost:3000",
   "https://bright-flix.vercel.app",
+  "https://bright-flix.vercel.app/insert"
 ];
 
 const corsOptions = {
