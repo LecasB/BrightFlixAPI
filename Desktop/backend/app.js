@@ -23,7 +23,7 @@ const allowedOrigins = [
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', allowedOrigins);
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCHANGE, HEAD, OPTIONS');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, HEAD, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   next();
 });
@@ -36,7 +36,7 @@ const corsOptions = {
       callback(new Error("Não permitido por CORS"));
     }
   },
-  methods: ["GET", "POST", "DELETE", "PUT", "PATCH"],
+  methods: ["GET", "POST", "DELETE", "PUT", "PATCH", "HEAD", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
 };
 
