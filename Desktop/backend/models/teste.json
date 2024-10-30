@@ -1,0 +1,68 @@
+[
+  {
+    "title": "Crítica sobre o filme Rataouille",
+    "text": "Filme genuíno, pessoalmente gostei bastante, sou fã, é uma pena não saber fazer uma boa francesinha.",
+    "movie": "Ratatouille",
+    "movieId": 6,
+    "email": "leonardo@teste.pt",
+    "rating": 5,
+    "first_name": "Leonardo",
+    "last_name": "Carvalho",
+    "id": "6722bf7e9c7baa29b4b4ec9d"
+  },
+  {
+    "title": "Chilling and Masterfully Crafted",
+    "text": "Silence of the Lambs is a psychological thriller that keeps you on the edge of your seat. Jodie Foster and Anthony Hopkins deliver phenomenal performances, making it a true classic of the genre.",
+    "movie": "Silence of the Lambs",
+    "movieId": 26,
+    "email": "hannibalfan123@example.com",
+    "rating": 4.5,
+    "first_name": "Sarah",
+    "last_name": "Johnson",
+    "id": "6722c0abd2cbe131abfae550"
+  },
+  {
+    "title": "A Culinary Masterpiece!",
+    "text": "Ratatouille is a delightful journey into the world of food and passion. The animation is stunning, and the story is both heartwarming and inspiring. A must-watch for food lovers!",
+    "movie": "Ratatouille",
+    "movieId": 6,
+    "email": "chef.jane@example.com",
+    "rating": 5,
+    "first_name": "Jane",
+    "last_name": "Doe",
+    "id": "6722c0abd2cbe131abfae54e"
+  },
+  {
+    "title": "A Timeless Classic",
+    "text": "Taxi Driver is an intense, dark look at the human psyche. De Niro's performance is nothing short of iconic. It’s gritty and raw, yet incredibly powerful.",
+    "movie": "Silence of the Lambs",
+    "movieId": 12,
+    "email": "moviebuff.ryan@example.com",
+    "rating": 5,
+    "first_name": "Ryan",
+    "last_name": "Smith",
+    "id": "6722c0abd2cbe131abfae54f"
+  },
+  {
+    "title": "A Psychological Horror Gem",
+    "text": "The Shining is a masterpiece of horror. Stanley Kubrick's direction and Jack Nicholson's performance make this film a nerve-wracking and unforgettable experience. A true classic.",
+    "movie": "The Shining",
+    "movieId": 37,
+    "email": "horror.fan@example.com",
+    "rating": 5,
+    "first_name": "Alex",
+    "last_name": "Williams",
+    "id": "6722c0abd2cbe131abfae551"
+  },
+  {
+    "title": "Fun for the Whole Family",
+    "text": "Ice Age is a light-hearted and funny adventure. The animation is charming, and the characters are lovable. A great movie to watch with kids or anyone looking for a feel-good animated film.",
+    "movie": "Ice Age",
+    "movieId": 131,
+    "email": "familymoviefan@example.com",
+    "rating": 4,
+    "first_name": "Emily",
+    "last_name": "Davis",
+    "id": "6722c0abd2cbe131abfae552"
+  }
+]
