@@ -5,10 +5,9 @@ const Reviews = require("../models/reviews");
 exports.GetReviews = async (req, res) => {
   try {
     const reviews = await Reviews.find(); // Get all reviews
-    res.status(200).json({
-      success: true,
-      data: reviews,
-    });
+
+    // Updated response to send only the array of reviews
+    res.status(200).json(reviews);
   } catch (error) {
     res.status(500).json({
       success: false,
