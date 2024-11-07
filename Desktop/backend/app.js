@@ -54,11 +54,13 @@ const videos = require("./routes/videos");
 const auth = require("./routes/auth");
 const series = require("./routes/series");
 const reviews = require("./routes/reviews");
+const headlines = require("./routes/headlines");
 
 app.use("/api/v1", videos);
 app.use("/api/v1", auth);
 app.use("/api/v1", series);
 app.use("/api/v1", reviews);
+app.use("/api/v1", headlines);
 
 // Middleware to handle errors
 app.use(errorMiddleware);
